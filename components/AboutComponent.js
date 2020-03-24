@@ -22,7 +22,7 @@ function Leadership(props) {
 
     const leaders = props.leaders;
     return (
-        <Card>
+        <Card title='Corporate Leadership'>
             <FlatList 
                 data={leaders}
                 renderItem={RenderLeaderItem}
