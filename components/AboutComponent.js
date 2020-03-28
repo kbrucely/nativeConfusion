@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import { Text, View, FlatList, ScrollView } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
 import { LEADERS } from '../shared/leaders';
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
+
+const mapStateToProps = state => {
+    return {
+      leaders: state.leaders
+    }
+  }
 
 function History(props) {
 
@@ -18,52 +26,35 @@ The restaurant traces its humble beginnings to The Frying Pan, a successful chai
 
         }
 
-function Leadership(props) {
-
-    const leaders = props.leaders;
-    return (
-        <Card title='Corporate Leadership'>
-            <FlatList 
-                data={leaders}
-                renderItem={RenderLeaderItem}
-                keyExtractor={item => item.id.toString()}
-            />
-        </Card>
-    );
-
-        }
-
-function RenderLeaderItem({item, index}) {
+function RenderLeader({item, index}) {
     return(
         <ListItem
                   key={index}
                   title={item.name}
                   subtitle={item.description}
                   hideChevron={true}
-                  leftAvatar={{ source: require('./images/alberto.png')}}
+                  leftAvatar={{source: {uri: baseUrl + item.image}}}
         />
     );
 }
 
 class About extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            leaders: LEADERS
-        };
-    }
-
-
     render() {
 
         return(
             <ScrollView>
               <History />
-              <Leadership leaders={this.state.leaders}/>
+              <Card title='Corporate Leadership'>
+                    <FlatList 
+                        data={this.props.leaders.leaders}
+                        renderItem={RenderLeader}
+                        keyExtractor={item => item.id.toString()}
+                    />
+                </Card>
             </ScrollView>
         );
     }
 }
 
-export default About;
+export default connect(mapStateToProps)(About);
