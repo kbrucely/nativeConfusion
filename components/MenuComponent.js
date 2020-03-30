@@ -36,7 +36,6 @@ class Menu extends Component {
 
         const { navigate } = this.props.navigation;
         
-        return (
             if (this.props.dishes.isLoading) {
                 return(
                     <Loading />
@@ -58,7 +57,7 @@ class Menu extends Component {
                         />
                 );
             }
-        );
+        
     }
 }
 

@@ -18,7 +18,6 @@ function RenderItem(props) {
     
         const item = props.item;
         
-        if (item != null) {
             if (props.isLoading) {
                 return(
                         <Loading />
@@ -48,7 +47,6 @@ function RenderItem(props) {
                     return(<View></View>);
                 }
             }
-}
 }
 
 class Home extends Component {
