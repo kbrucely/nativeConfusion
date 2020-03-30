@@ -27,7 +27,7 @@ The restaurant traces its humble beginnings to The Frying Pan, a successful chai
 
         }
 
-function RenderLeader({item, index}) {
+function renderLeader({item, index}) {
     return(
         <ListItem
                   key={index}
